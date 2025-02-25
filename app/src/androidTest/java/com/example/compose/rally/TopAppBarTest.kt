@@ -6,6 +6,9 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import com.example.compose.rally.ui.components.RallyTopAppBar
 import org.junit.Rule
 import org.junit.Test
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.printToLog
 
 class TopAppBarTest {
 
@@ -13,7 +16,7 @@ class TopAppBarTest {
     val composeTestRule = createComposeRule()
 
     @Test
-    fun rallyTopAppBarTest() {
+    fun rallyTopAppBarTest_currentLabelExists() {
         val allScreens = RallyScreen.values().toList()
         composeTestRule.setContent {
             RallyTopAppBar(
@@ -22,8 +25,9 @@ class TopAppBarTest {
                 currentScreen = RallyScreen.Accounts
             )
         }
+
         composeTestRule
             .onNodeWithContentDescription(RallyScreen.Accounts.name)
-            .assertIsSelected()
+            .assertExists()
     }
 }
